@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="fr">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Caps — Maison de casquettes</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -8,6 +13,7 @@
         await OneSignal.init({
           appId: "1799741e-7f32-4ea1-baca-d3c7ae45eee9",
         });
+        await OneSignal.Notifications.requestPermission();
       });
     </script>
   </head>

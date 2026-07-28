@@ -150,7 +150,7 @@ export default function App() {
       const order = await res.json();
       setLastOrderId(order.id);
       setCheckoutStep("confirmed");
-      setToast("Message de remerciement envoyé par SMS");
+      setToast("Commande confirmée !");
       setOrderCount((n) => n + 1);
       window.setTimeout(() => {
         setCheckoutStep("cart");
@@ -293,7 +293,7 @@ export default function App() {
                       <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: C.ink }}><Check size={28} color={C.white} /></div>
                       <p className="font-medium">Merci {customer.name.split(" ")[0] || ""}, commande confirmée !</p>
                       <p className="uc-mono text-[11px]" style={{ color: C.gray }}>N° {lastOrderId}</p>
-                      <p className="uc-mono text-[11px] max-w-[220px]" style={{ color: C.gray }}>Paiement à la livraison · un SMS de remerciement t'a été envoyé au {customer.phone}</p>
+                      <p className="uc-mono text-[11px] max-w-[220px]" style={{ color: C.gray }}>Paiement à la livraison · on te contacte au {customer.phone}</p>
                     </div>
                   ) : checkoutStep === "form" ? (
                     <div className="flex flex-col gap-4">

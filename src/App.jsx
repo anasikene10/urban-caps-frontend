@@ -451,8 +451,3 @@ export default function App() {
               <Check size={14} /> {toast}
             </div>
           )}
-        </div>
-      )}
-    </div>
-  );
-}

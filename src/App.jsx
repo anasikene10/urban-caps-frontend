@@ -13,6 +13,7 @@ const C = {
   grayLine: "#D8D6D2",
 };
 
+const PRODUCT_DESCRIPTION = "Une casquette pensée comme une pièce de vestiaire : coupe précise, matière noble, finitions soignées. Un basique qui devient signature.";
 const FALLBACK_PRODUCTS = [
   { id: 1, name: "Snapback Signature", tag: "COTON TWILL", price: 390, body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
   { id: 2, name: "Trucker Noir Mat", tag: "MAILLE TECHNIQUE", price: 340, body: C.charcoal, brim: C.ink, badge: null },
@@ -66,6 +67,8 @@ export default function App() {
   const [customer, setCustomer] = useState({ name: "", phone: "", city: "", address: "" });
 
   const [adminOpen, setAdminOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [detailQty, setDetailQty] = useState(1);
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
   const [orderCount, setOrderCount] = useState(0);
@@ -252,7 +255,7 @@ export default function App() {
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((p) => (
-                  <div key={p.id} className="invert-card relative p-5" style={{ background: C.white, border: `1px solid ${C.ink}` }}>
+                  <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); }} className="invert-card relative p-5 cursor-pointer" style={{ background: C.white, border: `1px solid ${C.ink}` }}>
                     {p.badge && <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>}
                     <div className="w-full h-32 mb-4 spin-stage flex items-center justify-center">
                       <div className="spin-cap w-full h-full"><CapIcon body={p.body} brim={p.brim} /></div>
@@ -263,7 +266,7 @@ export default function App() {
                       <h4 className="font-medium text-base">{p.name}</h4>
                       <span className="uc-mono uc-price text-sm">{p.price} DH</span>
                     </div>
-                    <button onClick={() => addToCart(p)} className="uc-btn w-full flex items-center justify-center gap-2 py-2.5 uc-mono text-[11px]" style={{ background: C.ink, color: C.white }}>
+                    <button onClick={(e) => { e.stopPropagation(); addToCart(p); }} className="uc-btn w-full flex items-center justify-center gap-2 py-2.5 uc-mono text-[11px]" style={{ background: C.ink, color: C.white }}>
                       <Plus size={14} /> AJOUTER AU PANIER
                     </button>
                   </div>
@@ -380,6 +383,70 @@ export default function App() {
             </div>
           )}
 
+          {selectedProduct && (
+            <div className="fixed inset-0 z-50 overflow-y-auto" style={{ background: C.white }}>
+              <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-12 py-4" style={{ background: C.white, borderBottom: `1px solid ${C.grayLine}` }}>
+                <button onClick={() => setSelectedProduct(null)} className="flex items-center gap-1 uc-mono text-[11px]" style={{ color: C.charcoal }}>
+                  <ChevronLeft size={16} /> RETOUR
+                </button>
+                <img src={logo} alt="Urban Caps" className="h-7" />
+                <button onClick={() => setCartOpen(true)} className="relative flex items-center justify-center w-9 h-9 border" style={{ borderColor: C.ink }}>
+                  <ShoppingBag size={16} />
+                  {itemCount > 0 && <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center text-[10px]" style={{ background: C.ink, color: C.white }}>{itemCount}</span>}
+                </button>
+              </div>
+
+              <div className="max-w-4xl mx-auto px-6 md:px-12 py-10 md:py-16 grid md:grid-cols-2 gap-10 md:gap-16">
+                <div className="flex items-center justify-center spin-stage" style={{ background: C.off, minHeight: 320 }}>
+                  <div className="spin-cap w-40 h-40 md:w-56 md:h-56">
+                    <CapIcon body={selectedProduct.body} brim={selectedProduct.brim} />
+                  </div>
+                </div>
+
+                <div>
+                  <span className="uc-mono text-[11px]" style={{ color: C.gray }}>{selectedProduct.tag}</span>
+                  <h1 className="uc-serif italic text-3xl md:text-4xl my-3">{selectedProduct.name}</h1>
+                  <span className="uc-mono text-xl block mb-6">{selectedProduct.price} DH</span>
+
+                  <div className="flex items-center gap-2 mb-6 uc-mono text-[11px] px-3 py-2" style={{ border: `1px solid ${C.ink}`, color: C.charcoal, width: "fit-content" }}>
+                    <Truck size={14} /> LIVRAISON GRATUITE
+                  </div>
+
+                  <p className="mb-8 max-w-md" style={{ color: C.charcoal }}>{PRODUCT_DESCRIPTION}</p>
+
+                  <div className="uc-mono text-[10px] mb-2" style={{ color: C.gray }}>QUANTITÉ</div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <button onClick={() => setDetailQty((q) => Math.max(1, q - 1))} className="w-9 h-9 flex items-center justify-center" style={{ border: `1px solid ${C.grayLine}` }}>
+                      <Minus size={14} />
+                    </button>
+                    <span className="uc-mono text-base w-6 text-center">{detailQty}</span>
+                    <button onClick={() => setDetailQty((q) => q + 1)} className="w-9 h-9 flex items-center justify-center" style={{ border: `1px solid ${C.grayLine}` }}>
+                      <Plus size={14} />
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      for (let i = 0; i < detailQty; i++) addToCart(selectedProduct);
+                      setSelectedProduct(null);
+                    }}
+                    className="w-full py-3.5 uc-mono text-xs flex items-center justify-center gap-2"
+                    style={{ background: C.ink, color: C.white }}
+                  >
+                    <Plus size={14} /> AJOUTER AU PANIER
+                  </button>
+
+                  <div className="mt-8 pt-6 uc-mono text-[10px] flex flex-col gap-2" style={{ borderTop: `1px solid ${C.grayLine}`, color: C.gray }}>
+                    <span>MATIÈRE — {selectedProduct.tag}</span>
+                    <span>PAIEMENT — À LA LIVRAISON</span>
+                    <span>ÉCHANGE POSSIBLE SOUS 7 JOURS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {toast && (
           {toast && (
             <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 uc-mono text-[11px] flex items-center gap-2" style={{ background: C.ink, color: C.white }}>
               <Check size={14} /> {toast}

@@ -264,6 +264,7 @@ export default function App() {
             </div>
             <div className="relative flex items-center justify-center py-8">
               <div className="w-56 h-56 md:w-72 md:h-72 flex items-center justify-center"><img src={LOGO_FRAMES[logoFrame]} alt="Urban Caps" className="max-w-full max-h-full object-contain" /></div>
+            </div>
           </section>
 
           <section id="collection" className="px-6 md:px-12 py-16" style={{ background: C.off }}>

@@ -294,7 +294,7 @@ const loadOrders = async (secret) => {
               <p className="max-w-md mx-auto mb-10" style={{ color: `${C.white}bb` }}>
                 Notre équipe répond rapidement sur WhatsApp. Suis-nous aussi sur Instagram pour voir les nouvelles pièces en premier.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 
                   href="https://wa.me/212718437511"
                   target="_blank"

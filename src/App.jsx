@@ -13,7 +13,7 @@ const C = {
   grayLine: "#D8D6D2",
 };
 const LOGO_FRAMES = ["000", "030", "060", "090", "120", "150", "180", "210", "240", "270", "300", "330"].map(
-  (deg) => `/logo-${deg}.png`
+  (deg) => `/logo-${deg}.PNG`
 );
 const PRODUCT_DESCRIPTION = "Une casquette pensée comme une pièce de vestiaire : coupe précise, matière noble, finitions soignées. Un basique qui devient signature.";
 const FALLBACK_PRODUCTS = [

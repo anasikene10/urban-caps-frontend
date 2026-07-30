@@ -264,8 +264,7 @@ export default function App() {
             </div>
             <div className="relative flex items-center justify-center py-8">
               <div className="badge-ring absolute w-40 h-40 rounded-full flex items-center justify-center uc-mono text-[9px] text-center" style={{ border: `1px solid ${C.ink}`, color: C.charcoal }}>URBAN CAPS · ÉDITION LIMITÉE · URBAN CAPS ·</div>
-              <div className="w-56 md:w-72"><img src={LOGO_FRAMES[logoFrame]} alt="Urban Caps" className="w-full h-auto" /></div>
-            </div>
+              <div className="w-56 h-56 md:w-72 md:h-72 flex items-center justify-center"><img src={LOGO_FRAMES[logoFrame]} alt="Urban Caps" className="max-w-full max-h-full object-contain" /></div>
           </section>
 
           <section id="collection" className="px-6 md:px-12 py-16" style={{ background: C.off }}>

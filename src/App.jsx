@@ -400,7 +400,23 @@ const loadOrders = async (secret) => {
                   <button onClick={() => setAdminOpen(false)}><X size={22} /></button>
                 </div>
                 <div className="flex-1 overflow-y-auto px-5 py-4">
-                  {ordersLoading ? (
+                  {!adminUnlocked ? (
+                    <div className="flex flex-col gap-3">
+                      <p className="text-sm" style={{ color: C.gray }}>Entre le mot de passe admin.</p>
+                      <input
+                        type="password"
+                        value={adminPasswordInput}
+                        onChange={(e) => setAdminPasswordInput(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && submitAdminPassword()}
+                        placeholder="Mot de passe"
+                        className="w-full px-3 py-2 text-sm"
+                        style={{ border: `1px solid ${C.grayLine}` }}
+                      />
+                      <button onClick={submitAdminPassword} className="w-full py-2.5 uc-mono text-xs" style={{ background: C.ink, color: C.white }}>
+                        DÉVERROUILLER
+                      </button>
+                    </div>
+                  ) : ordersLoading ? (
                     <p className="text-sm" style={{ color: C.gray }}>Chargement…</p>
                   ) : orders.length === 0 ? (
                     <p className="text-sm" style={{ color: C.gray }}>Aucune commande pour l'instant.</p>

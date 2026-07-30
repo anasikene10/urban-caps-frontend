@@ -67,6 +67,8 @@ export default function App() {
   const [customer, setCustomer] = useState({ name: "", phone: "", city: "", address: "" });
 
   const [adminOpen, setAdminOpen] = useState(false);
+  const [adminUnlocked, setAdminUnlocked] = useState(false);
+  const [adminPasswordInput, setAdminPasswordInput] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [manifestoOpen, setManifestoOpen] = useState(false);
   const [detailQty, setDetailQty] = useState(1);
@@ -85,28 +87,37 @@ export default function App() {
       .catch(() => {});
   }, []);
 
-  const loadOrders = async () => {
+const loadOrders = async (secret) => {
     setOrdersLoading(true);
     try {
-      const r = await fetch(`${API_URL}/api/orders`);
+      const r = await fetch(`${API_URL}/api/orders`, { headers: { "x-admin-secret": secret || adminPasswordInput } });
+      if (r.status === 401) {
+        setOrders([]);
+        setOrdersLoading(false);
+        return false;
+      }
       const data = await r.json();
       setOrders(Array.isArray(data) ? data : []);
       setOrderCount(Array.isArray(data) ? data.length : 0);
+      setOrdersLoading(false);
+      return true;
     } catch (e) {
       setOrders([]);
+      setOrdersLoading(false);
+      return false;
     }
-    setOrdersLoading(false);
   };
 
   const openAdmin = () => {
     setAdminOpen(true);
-    loadOrders();
+    if (adminUnlocked) loadOrders();
   };
 
-  useEffect(() => {
-    loadOrders();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const submitAdminPassword = async () => {
+    const ok = await loadOrders(adminPasswordInput);
+    if (ok) setAdminUnlocked(true);
+    else setToast("Mot de passe incorrect");
+  };
 
   const addToCart = (product) => {
     setCart((c) => ({ ...c, [product.id]: (c[product.id] || 0) + 1 }));

@@ -287,36 +287,7 @@ export default function App() {
             </div>
           </section>
 
-          <section id="contact" className="px-6 md:px-12 py-16 md:py-24" style={{ background: C.ink, color: C.white }}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://wa.me/212718437511" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 w-full sm:w-auto justify-center" style={{ background: C.white, color: C.ink }}><MessageCircle size={16} /> ÉCRIRE SUR WHATSAPP</a>
-                <a href="https://instagram.com/urbancaps.officiel" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 w-full sm:w-auto justify-center border" style={{ borderColor: C.white, color: C.white }}><Instagram size={16} /> @URBANCAPS.OFFICIEL</a>
-              </div>
-            </div>
-          </section>
-                
-                  href="https://wa.me/212718437511"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 w-full sm:w-auto justify-center"
-                  style={{ background: C.white, color: C.ink }}
-                >
-                  <MessageCircle size={16} /> ÉCRIRE SUR WHATSAPP
-                </a>
-                
-                  href="https://instagram.com/urbancaps.officiel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 w-full sm:w-auto justify-center border"
-                  style={{ borderColor: C.white, color: C.white }}
-                >
-                  <Instagram size={16} /> @URBANCAPS.OFFICIEL
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <footer className="px-6 md:px-12 py-6 uc-mono text-[11px]" style={{ background: C.ink, color: C.gray, borderTop: `1px solid ${C.charcoal}` }}>
+         <footer id="contact" className="px-6 md:px-12 py-10 uc-mono text-[11px]" style={{ background: C.ink, color: C.gray }}>
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-4">
               <span>© 2026 URBAN CAPS — MAISON DE CASQUETTES</span>
               <span>Site officiel</span>

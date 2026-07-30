@@ -288,13 +288,12 @@ export default function App() {
           </section>
 
           <section id="contact" className="px-6 md:px-12 py-16 md:py-24" style={{ background: C.ink, color: C.white }}>
-            <div className="max-w-4xl mx-auto text-center">
-              <span className="uc-mono text-[11px]" style={{ color: C.gray }}>UNE QUESTION ?</span>
-              <h3 className="uc-serif italic text-3xl md:text-4xl my-6">Parlons-en directement.</h3>
-              <p className="max-w-md mx-auto mb-10" style={{ color: `${C.white}bb` }}>
-                Notre équipe répond rapidement sur WhatsApp. Suis-nous aussi sur Instagram pour voir les nouvelles pièces en premier.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/212718437511" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 w-full sm:w-auto justify-center" style={{ background: C.white, color: C.ink }}><MessageCircle size={16} /> ÉCRIRE SUR WHATSAPP</a>
+                <a href="https://instagram.com/urbancaps.officiel" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 w-full sm:w-auto justify-center border" style={{ borderColor: C.white, color: C.white }}><Instagram size={16} /> @URBANCAPS.OFFICIEL</a>
+              </div>
+            </div>
+          </section>
                 
                   href="https://wa.me/212718437511"
                   target="_blank"

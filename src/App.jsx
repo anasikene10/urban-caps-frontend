@@ -263,7 +263,6 @@ export default function App() {
               <a href="#collection" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3" style={{ background: C.ink, color: C.white }}>VOIR LA COLLECTION <ArrowRight size={14} /></a>
             </div>
             <div className="relative flex items-center justify-center py-8">
-              <div className="badge-ring absolute w-40 h-40 rounded-full flex items-center justify-center uc-mono text-[9px] text-center" style={{ border: `1px solid ${C.ink}`, color: C.charcoal }}>URBAN CAPS · ÉDITION LIMITÉE · URBAN CAPS ·</div>
               <div className="w-56 h-56 md:w-72 md:h-72 flex items-center justify-center"><img src={LOGO_FRAMES[logoFrame]} alt="Urban Caps" className="max-w-full max-h-full object-contain" /></div>
           </section>
 

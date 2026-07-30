@@ -67,11 +67,11 @@ export default function App() {
   const [customer, setCustomer] = useState({ name: "", phone: "", city: "", address: "" });
 
   const [adminOpen, setAdminOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [detailQty, setDetailQty] = useState(1);
+  const [manifestoOpen, setManifestoOpen] = useState(false);
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [adminPasswordInput, setAdminPasswordInput] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [manifestoOpen, setManifestoOpen] = useState(false);
-  const [detailQty, setDetailQty] = useState(1);
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
   const [orderCount, setOrderCount] = useState(0);
@@ -87,7 +87,7 @@ export default function App() {
       .catch(() => {});
   }, []);
 
-const loadOrders = async (secret) => {
+  const loadOrders = async (secret) => {
     setOrdersLoading(true);
     try {
       const r = await fetch(`${API_URL}/api/orders`, { headers: { "x-admin-secret": secret || adminPasswordInput } });
@@ -287,14 +287,14 @@ const loadOrders = async (secret) => {
             </div>
           </section>
 
-         <section id="contact" className="px-6 md:px-12 py-16 md:py-24" style={{ background: C.ink, color: C.white }}>
+          <section id="contact" className="px-6 md:px-12 py-16 md:py-24" style={{ background: C.ink, color: C.white }}>
             <div className="max-w-4xl mx-auto text-center">
               <span className="uc-mono text-[11px]" style={{ color: C.gray }}>UNE QUESTION ?</span>
               <h3 className="uc-serif italic text-3xl md:text-4xl my-6">Parlons-en directement.</h3>
               <p className="max-w-md mx-auto mb-10" style={{ color: `${C.white}bb` }}>
                 Notre équipe répond rapidement sur WhatsApp. Suis-nous aussi sur Instagram pour voir les nouvelles pièces en premier.
               </p>
-             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 
                   href="https://wa.me/212718437511"
                   target="_blank"
@@ -573,7 +573,6 @@ const loadOrders = async (secret) => {
             </div>
           )}
 
-          {toast && (
           {toast && (
             <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 uc-mono text-[11px] flex items-center gap-2" style={{ background: C.ink, color: C.white }}>
               <Check size={14} /> {toast}

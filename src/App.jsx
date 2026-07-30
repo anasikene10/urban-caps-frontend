@@ -68,6 +68,7 @@ export default function App() {
 
   const [adminOpen, setAdminOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [manifestoOpen, setManifestoOpen] = useState(false);
   const [detailQty, setDetailQty] = useState(1);
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
@@ -218,7 +219,7 @@ export default function App() {
             <img src={logo} alt="Urban Caps" className="h-9 md:h-10" />
             <nav className="hidden md:flex gap-8 uc-mono text-[11px] uppercase" style={{ color: C.charcoal }}>
               <a href="#collection" className="hover:opacity-60">Collection</a>
-              <a href="#apropos" className="hover:opacity-60">Maison</a>
+              <button onClick={() => setManifestoOpen(true)} className="hover:opacity-60">Maison</button>
               <a href="#contact" className="hover:opacity-60">Contact</a>
             </nav>
             <div className="flex items-center gap-3">
@@ -446,6 +447,76 @@ export default function App() {
             </div>
           )}
 
+          {manifestoOpen && (
+            <div className="fixed inset-0 z-50 overflow-y-auto" style={{ background: C.ink, color: C.white }}>
+              <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-12 py-4" style={{ background: C.ink, borderBottom: `1px solid ${C.charcoal}` }}>
+                <button onClick={() => setManifestoOpen(false)} className="flex items-center gap-1 uc-mono text-[11px]" style={{ color: C.gray }}>
+                  <ChevronLeft size={16} /> RETOUR
+                </button>
+                <span className="uc-mono text-[11px]" style={{ color: C.gray }}>MAISON</span>
+                <div style={{ width: 70 }} />
+              </div>
+
+              <div className="max-w-3xl mx-auto px-6 md:px-12 py-16 md:py-28">
+                <span className="uc-mono text-[11px]" style={{ color: C.gray }}>DEPUIS TOUJOURS</span>
+                <h1 className="uc-serif italic text-4xl md:text-6xl leading-[1.1] my-8">
+                  Une casquette n'est pas<br />un accessoire.<br />C'est une posture.
+                </h1>
+
+                <div className="w-16 h-px my-10" style={{ background: C.charcoal }} />
+
+                <p className="text-lg md:text-xl leading-relaxed mb-10" style={{ color: `${C.white}dd` }}>
+                  Urban Caps est née d'une conviction simple : le streetwear mérite la même
+                  exigence que la haute couture. Chaque courbe, chaque point de couture,
+                  chaque nuance de gris est pensée pour durer — pas pour une saison, mais
+                  pour devenir une signature.
+                </p>
+
+                <p className="text-lg md:text-xl leading-relaxed mb-16" style={{ color: `${C.white}dd` }}>
+                  Ici, pas de logo criard, pas de couleur qui date. Juste du noir, du blanc,
+                  du gris — et une obsession pour les détails que peu de gens remarquent,
+                  mais que tout le monde ressent.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-8 mb-16">
+                  <div>
+                    <span className="uc-mono text-[11px]" style={{ color: C.gray }}>01 — MATIÈRE</span>
+                    <p className="mt-3" style={{ color: `${C.white}cc` }}>
+                      Coton twill, laine mélangée, velours côtelé. Rien n'est choisi au hasard.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="uc-mono text-[11px]" style={{ color: C.gray }}>02 — FORME</span>
+                    <p className="mt-3" style={{ color: `${C.white}cc` }}>
+                      Une coupe précise, pensée pour flatter chaque visage, chaque style.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="uc-mono text-[11px]" style={{ color: C.gray }}>03 — TEMPS</span>
+                    <p className="mt-3" style={{ color: `${C.white}cc` }}>
+                      Des pièces conçues pour être portées pendant des années, pas des mois.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="w-16 h-px my-10" style={{ background: C.charcoal }} />
+
+                <p className="uc-serif italic text-2xl md:text-3xl leading-snug mb-10">
+                  "Le vrai luxe, c'est la discrétion qui en impose."
+                </p>
+
+                <button
+                  onClick={() => { setManifestoOpen(false); document.getElementById("collection")?.scrollIntoView({ behavior: "smooth" }); }}
+                  className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3"
+                  style={{ background: C.white, color: C.ink }}
+                >
+                  DÉCOUVRIR LA COLLECTION <ArrowRight size={14} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {toast && (
           {toast && (
             <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 uc-mono text-[11px] flex items-center gap-2" style={{ background: C.ink, color: C.white }}>
               <Check size={14} /> {toast}

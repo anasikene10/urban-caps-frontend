@@ -202,8 +202,8 @@ export default function App() {
         .invert-card:hover { background: ${C.ink}; color: ${C.white}; }
         .invert-card:hover .uc-price, .invert-card:hover .uc-taglabel { color: ${C.white}; }
         .invert-card:hover .uc-btn { background: ${C.white}; color: ${C.ink}; }
-        .badge-ring { animation: spin-slow 16s linear infinite; }
-        @keyframes spin-slow { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+        .logo-spin { animation: spin-logo 8s linear infinite; }
+        @keyframes spin-logo { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
         .fall-cap { position: absolute; top: -12%; animation-name: fallDown; animation-iteration-count: infinite; animation-timing-function: ease-in; opacity: 0; }
         @keyframes fallDown { 0% { transform: translateY(0) translateX(0) rotate(6deg); opacity: 0; } 12% { opacity: 0.9; } 50% { transform: translateY(58vh) translateX(-2vw) rotate(-8deg); } 88% { opacity: 0.8; } 100% { transform: translateY(118vh) translateX(2vw) rotate(10deg); opacity: 0; } }
         .spin-stage { perspective: 900px; }

@@ -254,7 +254,8 @@ export default function App() {
               <h2 className="uc-serif italic text-4xl md:text-6xl leading-[1.05] my-6">L'art du<br />couvre-chef</h2>
               <p className="max-w-md mb-8" style={{ color: C.charcoal }}>Des lignes épurées, des matières nobles, un esprit rue. Chaque casquette est pensée comme une pièce de vestiaire, pas un accessoire.</p>
               <a href="#collection" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3" style={{ background: C.ink, color: C.white }}>VOIR LA COLLECTION <ArrowRight size={14} /></a>
-           <div className="relative flex items-center justify-center py-8">
+            </div>
+            <div className="relative flex items-center justify-center py-8">
               <div className="w-56 md:w-72"><img src="/logo-000.PNG" alt="Urban Caps" className="w-full h-auto logo-spin" /></div>
             </div>
           </section>

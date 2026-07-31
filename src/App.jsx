@@ -263,8 +263,7 @@ export default function App() {
               <a href="#collection" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3" style={{ background: C.ink, color: C.white }}>VOIR LA COLLECTION <ArrowRight size={14} /></a>
             </div>
             <div className="relative flex items-center justify-center py-8">
-              <div className="w-56 h-56 md:w-72 md:h-72 flex items-center justify-center"><img src={LOGO_FRAMES[logoFrame]} alt="Urban Caps" className="max-w-full max-h-full object-contain" /></div>
-            </div>
+              <div className="w-56 md:w-72"><img src="/logo-000.PNG" alt="Urban Caps" className="w-full h-auto logo-spin" /></div>
           </section>
 
           <section id="collection" className="px-6 md:px-12 py-16" style={{ background: C.off }}>

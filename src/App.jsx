@@ -189,7 +189,7 @@ export default function App() {
   };
   return (
     <div style={{ fontFamily: "'Archivo', sans-serif" }}>
-      <style>{`
+     <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
         .uc-serif { font-family: 'Fraunces', serif; }
         .uc-mono { font-family: 'Space Mono', monospace; letter-spacing: 0.08em; }
@@ -202,6 +202,8 @@ export default function App() {
         .invert-card:hover { background: ${C.ink}; color: ${C.white}; }
         .invert-card:hover .uc-price, .invert-card:hover .uc-taglabel { color: ${C.white}; }
         .invert-card:hover .uc-btn { background: ${C.white}; color: ${C.ink}; }
+        .badge-ring { animation: spin-slow 16s linear infinite; }
+        @keyframes spin-slow { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
         .logo-spin { animation: spin-logo 8s linear infinite; }
         @keyframes spin-logo { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
         .fall-cap { position: absolute; top: -12%; animation-name: fallDown; animation-iteration-count: infinite; animation-timing-function: ease-in; opacity: 0; }

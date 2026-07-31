@@ -12,9 +12,7 @@ const C = {
   gray: "#8C8C8C",
   grayLine: "#D8D6D2",
 };
-const LOGO_FRAMES = ["000", "030", "060", "090", "120", "150", "180", "210", "240", "270", "300", "330"].map(
-  (deg) => `/logo-${deg}.PNG`
-);
+
 const PRODUCT_DESCRIPTION = "Une casquette pensée comme une pièce de vestiaire : coupe précise, matière noble, finitions soignées. Un basique qui devient signature.";
 const FALLBACK_PRODUCTS = [
   { id: 1, name: "Snapback Signature", tag: "COTON TWILL", price: 390, body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
@@ -72,19 +70,12 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [detailQty, setDetailQty] = useState(1);
   const [manifestoOpen, setManifestoOpen] = useState(false);
-  const [logoFrame, setLogoFrame] = useState(0);
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [adminPasswordInput, setAdminPasswordInput] = useState("");
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
   const [orderCount, setOrderCount] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLogoFrame((f) => (f + 1) % LOGO_FRAMES.length);
-    }, 400);
-    return () => clearInterval(interval);
-  }, []);
   useEffect(() => {
     fetch(`${API_URL}/api/products`)
       .then((r) => r.json())

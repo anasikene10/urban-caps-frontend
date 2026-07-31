@@ -82,7 +82,7 @@ export default function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setLogoFrame((f) => (f + 1) % LOGO_FRAMES.length);
-    }, 200);
+    }, 300);
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {

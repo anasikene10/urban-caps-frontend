@@ -221,7 +221,7 @@ export default function App() {
           <div className="grain" />
           <div className="fade-scale flex flex-col items-center text-center px-6 relative z-10">
             <span className="uc-mono text-[10px] mb-5" style={{ color: C.gray }}>MAISON DE CASQUETTES</span>
-            <img src={logo} alt="Urban Caps" className="logo-white w-64 md:w-80 mb-2" />
+            <img src={logo} alt="Urban Caps" className="h-12 md:h-14" />
             <div className="w-16 h-px my-6" style={{ background: C.gray }} />
             <p className="uc-mono text-xs mb-10 max-w-xs" style={{ color: C.gray }}>OÙ LE STREETWEAR RENCONTRE LE SUR-MESURE</p>
             <button onClick={() => setEntered(true)} className="uc-mono text-xs px-8 py-3 border flex items-center gap-3" style={{ borderColor: C.white }}>

@@ -209,11 +209,6 @@ export default function App() {
       {!entered && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden" style={{ background: C.ink, color: C.white }}>
           <div className="grain" />
-          {FALLING_CAPS.map((cap, i) => (
-            <div key={i} className="fall-cap" style={{ left: cap.left, width: cap.size, height: cap.size * 0.7, animationDuration: `${cap.duration}s`, animationDelay: `${cap.delay}s` }}>
-              <CapIcon body={cap.body} brim={cap.brim} />
-            </div>
-          ))}
           <div className="fade-scale flex flex-col items-center text-center px-6 relative z-10">
             <span className="uc-mono text-[10px] mb-5" style={{ color: C.gray }}>MAISON DE CASQUETTES</span>
             <img src={logo} alt="Urban Caps" className="logo-white w-64 md:w-80 mb-2" />

@@ -124,6 +124,7 @@ export default function App() {
     setToast(`${product.name} — ajoutée`);
     window.clearTimeout(window.__ucToastTimer);
     window.__ucToastTimer = window.setTimeout(() => setToast(null), 1800);
+    if (window.fbq) window.fbq("track", "AddToCart", { content_name: product.name, value: product.price, currency: "MAD" });
   };
 
   const changeQty = (id, delta) => {
@@ -163,6 +164,7 @@ export default function App() {
       });
       if (!res.ok) throw new Error("Échec de la commande");
       const order = await res.json();
+      if (window.fbq) window.fbq("track", "Purchase", { value: subtotal, currency: "MAD" });
       setLastOrderId(order.id);
       setCheckoutStep("confirmed");
       setToast("Commande confirmée !");

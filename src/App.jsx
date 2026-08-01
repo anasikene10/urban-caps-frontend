@@ -271,27 +271,32 @@ export default function App() {
 
           <section id="collection" className="px-6 md:px-12 py-16" style={{ background: C.off }}>
             <div className="max-w-6xl mx-auto">
-              <div className="mb-10">
-                <h3 className="uc-serif italic text-3xl md:text-4xl mb-6">La collection</h3>
-                <div className="flex flex-wrap gap-2">
-                  {CATEGORIES.map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => setActiveCategory(cat)}
-                      className="uc-mono text-[10px] px-4 py-2"
-                      style={{
-                        background: activeCategory === cat ? C.ink : "transparent",
-                        color: activeCategory === cat ? C.white : C.charcoal,
-                        border: `1px solid ${activeCategory === cat ? C.ink : C.grayLine}`,
-                      }}
-                    >
-                      {cat}
-                    </button>
-                  ))}
+              <h3 className="uc-serif italic text-3xl md:text-4xl mb-10">La collection</h3>
+
+              {!browsingCategory ? (
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {categoryList.map((cat) => {
+                    const cover = categoryCover(cat);
+                    return (
+                      <div key={cat} onClick={() => setBrowsingCategory(cat)} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+                        <div className="w-full h-32 mb-5 flex items-center justify-center rounded-xl" style={{ background: C.off }}>
+                          <CapIcon body={cover.body} brim={cover.brim} />
+                        </div>
+                        <div className="uc-serif italic text-lg mb-1">{cat}</div>
+                        <span className="uc-mono uc-taglabel text-[10px]" style={{ color: C.gray }}>
+                          {products.filter((p) => p.category === cat).length} PIÈCES
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
-              </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map((p) => (
+              ) : (
+                <>
+                  <button onClick={() => setBrowsingCategory(null)} className="flex items-center gap-1 uc-mono text-[11px] mb-6" style={{ color: C.gray }}>
+                    <ChevronLeft size={14} /> TOUTES LES CATÉGORIES
+                  </button>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredProducts.map((p) => (
                   <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); window.history.pushState({}, "", `/produit/${p.id}`); }} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                     {p.badge && <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>}
                     <div className="w-full h-32 mb-4 flex items-center justify-center">
@@ -302,12 +307,14 @@ export default function App() {
                       <h4 className="font-medium text-base">{p.name}</h4>
                       <span className="uc-mono uc-price text-sm">{p.price} DH</span>
                     </div>
-                    <button onClick={(e) => { e.stopPropagation(); addToCart(p); }} className="uc-btn w-full flex items-center justify-center gap-2 py-2.5 uc-mono text-[11px]" style={{ background: C.ink, color: C.white }}>
+                    <button onClick={(e) => { e.stopPropagation(); addToCart(p); }} className="uc-btn w-full flex items-center justify-center gap-2 py-3 uc-mono text-[11px] rounded-full" style={{ background: C.ink, color: C.white }}>
                       <Plus size={14} /> AJOUTER AU PANIER
                     </button>
                   </div>
                 ))}
-              </div>
+                  </div>
+                </>
+              )}
             </div>
           </section>
 

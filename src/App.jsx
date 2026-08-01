@@ -86,7 +86,8 @@ export default function App() {
     }
   }, []);
   useEffect(() => {
-    fetch(`${API_URL}/api/products`
+    // Le backend n'a que 6 produits pour l'instant — on garde les 12 en local en attendant.
+  }, []);
 
   const loadOrders = async (secret) => {
     setOrdersLoading(true);

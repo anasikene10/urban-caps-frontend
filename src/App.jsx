@@ -15,24 +15,22 @@ const C = {
 
 const PRODUCT_DESCRIPTION = "Une casquette pensée comme une pièce de vestiaire : coupe précise, matière noble, finitions soignées. Un basique qui devient signature.";
 const FALLBACK_PRODUCTS = [
-  { id: 1, name: "Snapback Signature", tag: "COTON TWILL", price: 390, body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE", category: "SNAPBACKS" },
-  { id: 2, name: "Trucker Noir Mat", tag: "MAILLE TECHNIQUE", price: 340, body: C.charcoal, brim: C.ink, badge: null, category: "CASUAL" },
-  { id: 3, name: "Dad Hat Ivoire", tag: "COTON LAVÉ", price: 320, body: C.white, brim: C.ink, badge: "BEST-SELLER", category: "CASUAL" },
-  { id: 4, name: "Corduroy Graphite", tag: "VELOURS CÔTELÉ", price: 410, body: C.gray, brim: C.ink, badge: null, category: "PREMIUM" },
-  { id: 5, name: "Fitted Monogramme", tag: "LAINE MÉLANGÉE", price: 450, body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE", category: "PREMIUM" },
-  { id: 6, name: "Bucket Architecte", tag: "NYLON RIPSTOP", price: 300, body: C.charcoal, brim: C.white, badge: null, category: "BUCKETS" },
+  { id: 1, name: "Snapback Classique", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
+  { id: 2, name: "Snapback Sport", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.charcoal, brim: C.ink, badge: null },
+  { id: 3, name: "Snapback Urban", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.white, brim: C.ink, badge: "BEST-SELLER" },
+  { id: 4, name: "Snapback Nuit", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.gray, brim: C.ink, badge: null },
+  { id: 5, name: "Dad Hat Premium", tag: "COTON LAVÉ", price: 199, size: "M", body: C.ink, brim: C.gray, badge: null },
+  { id: 6, name: "Dad Hat Ivoire", tag: "COTON LAVÉ", price: 199, size: "M", body: C.white, brim: C.ink, badge: "BEST-SELLER" },
+  { id: 7, name: "Dad Hat Graphite", tag: "COTON LAVÉ", price: 199, size: "M", body: C.charcoal, brim: C.white, badge: null },
+  { id: 8, name: "Dad Hat Signature", tag: "COTON LAVÉ", price: 199, size: "M", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
+  { id: 9, name: "Fitted Édition", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE" },
+  { id: 10, name: "Fitted Monogramme", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.charcoal, brim: C.ink, badge: null },
+  { id: 11, name: "Trucker Sport", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.white, brim: C.charcoal, badge: null },
+  { id: 12, name: "Trucker Classique", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.gray, brim: C.white, badge: null },
 ];
-
 const CATEGORIES = ["TOUS", "SNAPBACKS", "CASUAL", "PREMIUM", "BUCKETS"];
 
-const DISPLAY_STYLES = [
-  { body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
-  { body: C.charcoal, brim: C.ink, badge: null },
-  { body: C.white, brim: C.ink, badge: "BEST-SELLER" },
-  { body: C.gray, brim: C.ink, badge: null },
-  { body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE" },
-  { body: C.charcoal, brim: C.white, badge: null },
-];
+
 
 const FALLING_CAPS = [
   { left: "8%", size: 42, duration: 9, delay: 0, body: C.white, brim: C.gray },
@@ -88,15 +86,7 @@ export default function App() {
     }
   }, []);
   useEffect(() => {
-    fetch(`${API_URL}/api/products`)
-      .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length) {
-          setProducts(data.map((p, i) => ({ ...p, ...DISPLAY_STYLES[i % DISPLAY_STYLES.length] })));
-        }
-      })
-      .catch(() => {});
-  }, []);
+    fetch(`${API_URL}/api/products`
 
   const loadOrders = async (secret) => {
     setOrdersLoading(true);
@@ -459,8 +449,13 @@ export default function App() {
                   <h1 className="uc-serif italic text-3xl md:text-4xl my-3">{selectedProduct.name}</h1>
                   <span className="uc-mono text-xl block mb-6">{selectedProduct.price} DH</span>
 
-                  <div className="flex items-center gap-2 mb-6 uc-mono text-[11px] px-3 py-2" style={{ border: `1px solid ${C.ink}`, color: C.charcoal, width: "fit-content" }}>
-                    <Truck size={14} /> LIVRAISON GRATUITE
+                  <div className="flex flex-wrap items-center gap-3 mb-6">
+                    <div className="flex items-center gap-2 uc-mono text-[11px] px-3 py-2" style={{ border: `1px solid ${C.ink}`, color: C.charcoal }}>
+                      <Truck size={14} /> LIVRAISON GRATUITE
+                    </div>
+                    <div className="uc-mono text-[11px] px-3 py-2" style={{ border: `1px solid ${C.grayLine}`, color: C.gray }}>
+                      TAILLE — {selectedProduct.size}
+                    </div>
                   </div>
 
                   <p className="mb-8 max-w-md" style={{ color: C.charcoal }}>{PRODUCT_DESCRIPTION}</p>

@@ -265,10 +265,9 @@ export default function App() {
                 {products.map((p) => (
                   <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); }} className="invert-card relative p-5 cursor-pointer" style={{ background: C.white, border: `1px solid ${C.ink}` }}>
                     {p.badge && <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>}
-                    <div className="w-full h-32 mb-4 spin-stage flex items-center justify-center">
-                      <div className="spin-cap w-full h-full"><CapIcon body={p.body} brim={p.brim} /></div>
+                    <div className="w-full h-32 mb-4 flex items-center justify-center">
+                      <CapIcon body={p.body} brim={p.brim} />
                     </div>
-                    <div className="uc-mono uc-taglabel text-[9px] mb-1" style={{ color: `${C.gray}99` }}>VUE 360°</div>
                     <div className="uc-mono uc-taglabel text-[10px] mb-1" style={{ color: C.gray }}>{p.tag}</div>
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="font-medium text-base">{p.name}</h4>
@@ -421,8 +420,8 @@ export default function App() {
               </div>
 
               <div className="max-w-4xl mx-auto px-6 md:px-12 py-10 md:py-16 grid md:grid-cols-2 gap-10 md:gap-16">
-                <div className="flex items-center justify-center spin-stage" style={{ background: C.off, minHeight: 320 }}>
-                  <div className="spin-cap w-40 h-40 md:w-56 md:h-56">
+                <div className="flex items-center justify-center" style={{ background: C.off, minHeight: 320 }}>
+                  <div className="w-40 h-40 md:w-56 md:h-56">
                     <CapIcon body={selectedProduct.body} brim={selectedProduct.brim} />
                   </div>
                 </div>

@@ -15,13 +15,15 @@ const C = {
 
 const PRODUCT_DESCRIPTION = "Une casquette pensée comme une pièce de vestiaire : coupe précise, matière noble, finitions soignées. Un basique qui devient signature.";
 const FALLBACK_PRODUCTS = [
-  { id: 1, name: "Snapback Signature", tag: "COTON TWILL", price: 390, body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
-  { id: 2, name: "Trucker Noir Mat", tag: "MAILLE TECHNIQUE", price: 340, body: C.charcoal, brim: C.ink, badge: null },
-  { id: 3, name: "Dad Hat Ivoire", tag: "COTON LAVÉ", price: 320, body: C.white, brim: C.ink, badge: "BEST-SELLER" },
-  { id: 4, name: "Corduroy Graphite", tag: "VELOURS CÔTELÉ", price: 410, body: C.gray, brim: C.ink, badge: null },
-  { id: 5, name: "Fitted Monogramme", tag: "LAINE MÉLANGÉE", price: 450, body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE" },
-  { id: 6, name: "Bucket Architecte", tag: "NYLON RIPSTOP", price: 300, body: C.charcoal, brim: C.white, badge: null },
+  { id: 1, name: "Snapback Signature", tag: "COTON TWILL", price: 390, body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE", category: "SNAPBACKS" },
+  { id: 2, name: "Trucker Noir Mat", tag: "MAILLE TECHNIQUE", price: 340, body: C.charcoal, brim: C.ink, badge: null, category: "CASUAL" },
+  { id: 3, name: "Dad Hat Ivoire", tag: "COTON LAVÉ", price: 320, body: C.white, brim: C.ink, badge: "BEST-SELLER", category: "CASUAL" },
+  { id: 4, name: "Corduroy Graphite", tag: "VELOURS CÔTELÉ", price: 410, body: C.gray, brim: C.ink, badge: null, category: "PREMIUM" },
+  { id: 5, name: "Fitted Monogramme", tag: "LAINE MÉLANGÉE", price: 450, body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE", category: "PREMIUM" },
+  { id: 6, name: "Bucket Architecte", tag: "NYLON RIPSTOP", price: 300, body: C.charcoal, brim: C.white, badge: null, category: "BUCKETS" },
 ];
+
+const CATEGORIES = ["TOUS", "SNAPBACKS", "CASUAL", "PREMIUM", "BUCKETS"];
 
 const DISPLAY_STYLES = [
   { body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
@@ -70,6 +72,7 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [detailQty, setDetailQty] = useState(1);
   const [manifestoOpen, setManifestoOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("TOUS");
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [adminPasswordInput, setAdminPasswordInput] = useState("");
   const [orders, setOrders] = useState([]);
@@ -149,6 +152,7 @@ export default function App() {
     () => Object.entries(cart).map(([id, qty]) => ({ product: products.find((p) => p.id === Number(id)), qty })).filter((i) => i.product),
     [cart, products]
   );
+  const filteredProducts = activeCategory === "TOUS" ? products : products.filter((p) => p.category === activeCategory);
   const itemCount = cartItems.reduce((s, i) => s + i.qty, 0);
   const subtotal = cartItems.reduce((s, i) => s + i.qty * i.product.price, 0);
 
@@ -267,12 +271,27 @@ export default function App() {
 
           <section id="collection" className="px-6 md:px-12 py-16" style={{ background: C.off }}>
             <div className="max-w-6xl mx-auto">
-              <div className="flex items-baseline justify-between mb-10">
-                <h3 className="uc-serif italic text-3xl md:text-4xl">La collection</h3>
-                <span className="uc-mono text-[11px]" style={{ color: C.gray }}>{products.length} PIÈCES</span>
+              <div className="mb-10">
+                <h3 className="uc-serif italic text-3xl md:text-4xl mb-6">La collection</h3>
+                <div className="flex flex-wrap gap-2">
+                  {CATEGORIES.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      className="uc-mono text-[10px] px-4 py-2"
+                      style={{
+                        background: activeCategory === cat ? C.ink : "transparent",
+                        color: activeCategory === cat ? C.white : C.charcoal,
+                        border: `1px solid ${activeCategory === cat ? C.ink : C.grayLine}`,
+                      }}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {products.map((p) => (
+                {filteredProducts.map((p) => (
                   <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); window.history.pushState({}, "", `/produit/${p.id}`); }} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                     {p.badge && <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>}
                     <div className="w-full h-32 mb-4 flex items-center justify-center">

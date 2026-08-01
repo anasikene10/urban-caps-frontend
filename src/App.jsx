@@ -77,6 +77,14 @@ export default function App() {
   const [orderCount, setOrderCount] = useState(0);
 
   useEffect(() => {
+    const match = window.location.pathname.match(/^\/produit\/(\d+)/);
+    if (match) {
+      const id = Number(match[1]);
+      const found = FALLBACK_PRODUCTS.find((p) => p.id === id);
+      if (found) { setSelectedProduct(found); setEntered(true); }
+    }
+  }, []);
+  useEffect(() => {
     fetch(`${API_URL}/api/products`)
       .then((r) => r.json())
       .then((data) => {
@@ -265,7 +273,7 @@ export default function App() {
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((p) => (
-                  <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); }} className="invert-card relative p-5 cursor-pointer" style={{ background: C.white, border: `1px solid ${C.ink}` }}>
+                  <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); window.history.pushState({}, "", `/produit/${p.id}`); }} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                     {p.badge && <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>}
                     <div className="w-full h-32 mb-4 flex items-center justify-center">
                       <CapIcon body={p.body} brim={p.brim} />
@@ -410,7 +418,7 @@ export default function App() {
           {selectedProduct && (
             <div className="fixed inset-0 z-50 overflow-y-auto" style={{ background: C.white }}>
               <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-12 py-4" style={{ background: C.white, borderBottom: `1px solid ${C.grayLine}` }}>
-                <button onClick={() => setSelectedProduct(null)} className="flex items-center gap-1 uc-mono text-[11px]" style={{ color: C.charcoal }}>
+                <button onClick={() => { setSelectedProduct(null); window.history.pushState({}, "", "/"); }} className="flex items-center gap-1 uc-mono text-[11px]" style={{ color: C.charcoal }}>
                   <ChevronLeft size={16} /> RETOUR
                 </button>
                 <img src={logo} alt="Urban Caps" className="h-7" />

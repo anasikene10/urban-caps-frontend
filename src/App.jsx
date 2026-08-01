@@ -144,7 +144,7 @@ export default function App() {
   const itemCount = cartItems.reduce((s, i) => s + i.qty, 0);
   const subtotal = cartItems.reduce((s, i) => s + i.qty * i.product.price, 0);
 
-  const formValid = customer.name.trim() && customer.phone.trim() && customer.city.trim() && customer.address.trim();
+  const formValid = customer.name.trim() && customer.phone.trim() && customer.city.trim();
 
   const submitOrder = async () => {
     if (!formValid || submitting) return;
@@ -314,7 +314,6 @@ export default function App() {
                         <input value={customer.name} onChange={(e) => setCustomer((c) => ({ ...c, name: e.target.value }))} placeholder="Nom complet" className="w-full px-3 py-2 text-sm" style={{ border: `1px solid ${C.grayLine}` }} />
                         <input value={customer.phone} onChange={(e) => setCustomer((c) => ({ ...c, phone: e.target.value }))} placeholder="Téléphone" className="w-full px-3 py-2 text-sm" style={{ border: `1px solid ${C.grayLine}` }} />
                         <input value={customer.city} onChange={(e) => setCustomer((c) => ({ ...c, city: e.target.value }))} placeholder="Ville" className="w-full px-3 py-2 text-sm" style={{ border: `1px solid ${C.grayLine}` }} />
-                        <textarea value={customer.address} onChange={(e) => setCustomer((c) => ({ ...c, address: e.target.value }))} placeholder="Adresse complète" rows={2} className="w-full px-3 py-2 text-sm resize-none" style={{ border: `1px solid ${C.grayLine}` }} />
                       </div>
                       <div className="uc-mono text-[10px] mt-2 mb-1" style={{ color: C.gray }}>MODE DE PAIEMENT</div>
                       <div className="flex items-center gap-3 px-3 py-3" style={{ border: `1px solid ${C.ink}`, background: C.off }}>

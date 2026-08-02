@@ -26,7 +26,7 @@ const FALLBACK_PRODUCTS = [
   { id: 9, name: "GUCCI BLACK 1-1", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE", category: "GUCCI", description: "Apportez une touche de luxe à votre style avec la casquette Gucci Dubai Noire. Son design moderne, sa finition premium et son logo brodé en font un accessoire élégant et polyvalent. Dotée d'une fermeture ajustable à l'arrière, elle garantit un confort optimal pour un usage quotidien." },
   { id: 10, name: "GUCCI GREEN 1-1", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.charcoal, brim: C.ink, badge: null, category: "GUCCI", description: "Affirmez votre style avec la casquette Gucci Dubai Verte. Son coloris vert raffiné, associé à une finition haut de gamme et un logo brodé, offre un look à la fois tendance et sophistiqué. Grâce à sa fermeture ajustable à l'arrière, elle s'adapte parfaitement à toutes les morphologies." },
   { id: 11, name: "POLO CAP LAVENDER", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.white, brim: C.charcoal, badge: null, category: "POLO", description: "Ajoutez une touche de couleur à votre tenue avec la casquette Polo Mauve. Son design élégant, son logo brodé emblématique et sa finition soignée en font un accessoire idéal pour un style décontracté et raffiné. Sa fermeture ajustable à l'arrière assure un confort optimal au quotidien." },
-  { id: 12, name: "POLO CAP LIGHT BLUE", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.gray, brim: C.white, badge: null, category: "POLO", description: "Optez pour un look frais et moderne avec la casquette Polo Bleu Ciel. Conçue avec des matériaux de qualité, elle se distingue par son logo brodé, sa finition premium et sa fermeture ajustable à l'arrière pour un ajustement parfait. Un indispensable pour compléter toutes vos tenues avec élégance." },
+  { id: 12, name: "POLO CAP LIGHT BLUE", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.gray, brim: C.white, badge: null, category: "POLO", soldOut: true, description: "Optez pour un look frais et moderne avec la casquette Polo Bleu Ciel. Conçue avec des matériaux de qualité, elle se distingue par son logo brodé, sa finition premium et sa fermeture ajustable à l'arrière pour un ajustement parfait. Un indispensable pour compléter toutes vos tenues avec élégance." },
 ];
 const CATEGORIES = ["TOUS", "NEW ERA", "LORO PIANA", "GUCCI", "POLO"];
 
@@ -283,8 +283,12 @@ export default function App() {
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProducts.map((p) => (
-                  <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); window.history.pushState({}, "", `/produit/${p.id}`); }} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
-                    {p.badge && <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>}
+                  <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); window.history.pushState({}, "", `/produit/${p.id}`); }} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)", opacity: p.soldOut ? 0.55 : 1 }}>
+                    {p.soldOut ? (
+                      <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ background: C.ink, color: C.white }}>ÉPUISÉ</div>
+                    ) : p.badge && (
+                      <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>
+                    )}
                     <div className="w-full h-32 mb-4 flex items-center justify-center">
                       <CapIcon body={p.body} brim={p.brim} />
                     </div>
@@ -293,9 +297,15 @@ export default function App() {
                       <h4 className="font-medium text-base">{p.name}</h4>
                       <span className="uc-mono uc-price text-sm">{p.price} DH</span>
                     </div>
-                    <button onClick={(e) => { e.stopPropagation(); addToCart(p); }} className="uc-btn w-full flex items-center justify-center gap-2 py-3 uc-mono text-[11px] rounded-full" style={{ background: C.ink, color: C.white }}>
-                      <Plus size={14} /> AJOUTER AU PANIER
-                    </button>
+                    {p.soldOut ? (
+                      <button disabled className="w-full flex items-center justify-center gap-2 py-3 uc-mono text-[11px] rounded-full cursor-not-allowed" style={{ background: C.grayLine, color: C.gray }}>
+                        RUPTURE DE STOCK
+                      </button>
+                    ) : (
+                      <button onClick={(e) => { e.stopPropagation(); addToCart(p); }} className="uc-btn w-full flex items-center justify-center gap-2 py-3 uc-mono text-[11px] rounded-full" style={{ background: C.ink, color: C.white }}>
+                        <Plus size={14} /> AJOUTER AU PANIER
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>

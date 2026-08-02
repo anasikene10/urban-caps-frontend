@@ -291,7 +291,7 @@ export default function App() {
                       <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>
                     )}
                     <div className="w-full h-32 mb-4 flex items-center justify-center overflow-hidden rounded-xl">
-                      {p.image ? <img src={p.image} alt={p.name} className="w-full h-full object-cover" /> : <CapIcon body={p.body} brim={p.brim} />}
+                      {p.image ? <img src={p.image} alt={p.name} className="w-full h-full object-contain" /> : <CapIcon body={p.body} brim={p.brim} />}
                     </div>
                     <div className="uc-mono uc-taglabel text-[10px] mb-1" style={{ color: C.gray }}>{p.tag}</div>
                     <div className="flex items-center justify-between mb-4">

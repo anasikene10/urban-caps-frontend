@@ -450,9 +450,27 @@ export default function App() {
               </div>
 
               <div className="max-w-4xl mx-auto px-6 md:px-12 py-10 md:py-16 grid md:grid-cols-2 gap-10 md:gap-16">
-                <div className="flex items-center justify-center" style={{ background: C.off, minHeight: 320 }}>
-                  <div className="w-40 h-40 md:w-56 md:h-56">
-                    <CapIcon body={selectedProduct.body} brim={selectedProduct.brim} />
+                <div>
+                  <div className="flex items-center justify-center mb-3" style={{ background: C.off, minHeight: 320 }}>
+                    <div className="w-40 h-40 md:w-56 md:h-56">
+                      <CapIcon body={activeImage === 0 ? selectedProduct.body : selectedProduct.brim} brim={activeImage === 0 ? selectedProduct.brim : selectedProduct.body} />
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => setActiveImage(0)}
+                      className="w-16 h-16 flex items-center justify-center"
+                      style={{ background: C.off, border: `2px solid ${activeImage === 0 ? C.ink : "transparent"}` }}
+                    >
+                      <div className="w-10 h-10"><CapIcon body={selectedProduct.body} brim={selectedProduct.brim} /></div>
+                    </button>
+                    <button
+                      onClick={() => setActiveImage(1)}
+                      className="w-16 h-16 flex items-center justify-center"
+                      style={{ background: C.off, border: `2px solid ${activeImage === 1 ? C.ink : "transparent"}` }}
+                    >
+                      <div className="w-10 h-10"><CapIcon body={selectedProduct.brim} brim={selectedProduct.body} /></div>
+                    </button>
                   </div>
                 </div>
 

@@ -15,18 +15,18 @@ const C = {
 
 const PRODUCT_DESCRIPTION = "Une casquette pensée comme une pièce de vestiaire : coupe précise, matière noble, finitions soignées. Un basique qui devient signature.";
 const FALLBACK_PRODUCTS = [
-  { id: 1, name: "LA CAP GRIS", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
-  { id: 2, name: "NY CAP BLACK", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.charcoal, brim: C.ink, badge: null },
-  { id: 3, name: "LA CAP FULL BLACK", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.white, brim: C.ink, badge: "BEST-SELLER" },
-  { id: 4, name: "LA CAP BLACK STARS", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.gray, brim: C.ink, badge: null },
-  { id: 5, name: "LORO PIANA CREAM", tag: "COTON LAVÉ", price: 199, size: "M", body: C.ink, brim: C.gray, badge: null },
-  { id: 6, name: "LORO PIANA NAVY BLUE", tag: "COTON LAVÉ", price: 199, size: "M", body: C.white, brim: C.ink, badge: "BEST-SELLER" },
-  { id: 7, name: "LORO PIANA BURGUNDY", tag: "COTON LAVÉ", price: 199, size: "M", body: C.charcoal, brim: C.white, badge: null },
-  { id: 8, name: "LORO PIANA CAMEL BROWN", tag: "COTON LAVÉ", price: 199, size: "M", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE" },
-  { id: 9, name: "GUCCI BLACK 1-1", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE" },
-  { id: 10, name: "GUCCI GREEN 1-1", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.charcoal, brim: C.ink, badge: null },
-  { id: 11, name: "POLO CAP LAVENDER", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.white, brim: C.charcoal, badge: null },
-  { id: 12, name: "POLO CAP LIGHT BLUE", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.gray, brim: C.white, badge: null },
+  { id: 1, name: "LA CAP GRIS", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE", category: "NEW ERA" },
+  { id: 2, name: "NY CAP BLACK", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.charcoal, brim: C.ink, badge: null, category: "NEW ERA" },
+  { id: 3, name: "LA CAP FULL BLACK", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.white, brim: C.ink, badge: "BEST-SELLER", category: "NEW ERA" },
+  { id: 4, name: "LA CAP BLACK STARS", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.gray, brim: C.ink, badge: null, category: "NEW ERA" },
+  { id: 5, name: "LORO PIANA CREAM", tag: "COTON LAVÉ", price: 199, size: "M", body: C.ink, brim: C.gray, badge: null, category: "LORO PIANA" },
+  { id: 6, name: "LORO PIANA NAVY BLUE", tag: "COTON LAVÉ", price: 199, size: "M", body: C.white, brim: C.ink, badge: "BEST-SELLER", category: "LORO PIANA" },
+  { id: 7, name: "LORO PIANA BURGUNDY", tag: "COTON LAVÉ", price: 199, size: "M", body: C.charcoal, brim: C.white, badge: null, category: "LORO PIANA" },
+  { id: 8, name: "LORO PIANA CAMEL BROWN", tag: "COTON LAVÉ", price: 199, size: "M", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE", category: "LORO PIANA" },
+  { id: 9, name: "GUCCI BLACK 1-1", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.ink, brim: C.gray, badge: "ÉDITION LIMITÉE", category: "GUCCI" },
+  { id: 10, name: "GUCCI GREEN 1-1", tag: "LAINE MÉLANGÉE", price: 299, size: "M", body: C.charcoal, brim: C.ink, badge: null, category: "GUCCI" },
+  { id: 11, name: "POLO CAP LAVENDER", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.white, brim: C.charcoal, badge: null, category: "POLO" },
+  { id: 12, name: "POLO CAP LIGHT BLUE", tag: "MAILLE TECHNIQUE", price: 160, size: "Ajustable", body: C.gray, brim: C.white, badge: null, category: "POLO" },
 ];
 const CATEGORIES = ["TOUS", "NEW ERA", "LORO PIANA", "GUCCI", "POLO"];
 

@@ -69,6 +69,7 @@ export default function App() {
   const [adminOpen, setAdminOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [detailQty, setDetailQty] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
   const [manifestoOpen, setManifestoOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("TOUS");
   const [adminUnlocked, setAdminUnlocked] = useState(false);
@@ -283,7 +284,7 @@ export default function App() {
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProducts.map((p) => (
-                  <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); window.history.pushState({}, "", `/produit/${p.id}`); }} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)", opacity: p.soldOut ? 0.55 : 1 }}>
+                  <div key={p.id} onClick={() => { setSelectedProduct(p); setDetailQty(1); setActiveImage(0); window.history.pushState({}, "", `/produit/${p.id}`); }} className="invert-card relative p-6 cursor-pointer rounded-2xl" style={{ background: C.white, border: `1px solid ${C.grayLine}`, boxShadow: "0 1px 3px rgba(0,0,0,0.04)", opacity: p.soldOut ? 0.55 : 1 }}>
                     {p.soldOut ? (
                       <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ background: C.ink, color: C.white }}>ÉPUISÉ</div>
                     ) : p.badge && (

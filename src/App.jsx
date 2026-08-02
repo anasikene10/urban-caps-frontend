@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { ShoppingBag, X, Plus, Minus, Check, ArrowRight, Bell, Truck, ChevronLeft, MessageCircle, Instagram } from "lucide-react";
+import { ShoppingBag, X, Plus, Minus, Check, ArrowRight, Bell, Truck, ChevronLeft, MessageCircle, Instagram, Music2 } from "lucide-react";
 import logo from "./assets/logo.png";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
@@ -313,7 +313,19 @@ export default function App() {
             </div>
           </section>
 
-         <footer id="contact" className="px-6 md:px-12 py-10 uc-mono text-[11px]" style={{ background: C.ink, color: C.gray }}>
+         <section id="contact" className="px-6 md:px-12 py-16 md:py-24" style={{ background: C.ink, color: C.white }}>
+            <div className="max-w-4xl mx-auto text-center">
+              <span className="uc-mono text-[11px]" style={{ color: C.gray }}>UNE QUESTION ?</span>
+              <h3 className="uc-serif italic text-3xl md:text-4xl my-6">Parlons-en directement.</h3>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a href="https://wa.me/212774626438" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3" style={{ background: C.white, color: C.ink }}><MessageCircle size={16} /> WHATSAPP</a>
+                <a href="https://instagram.com/urbancaps.officiel" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 border" style={{ borderColor: C.white, color: C.white }}><Instagram size={16} /> INSTAGRAM</a>
+                <a href="https://tiktok.com/@urban.caps9" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 uc-mono text-xs px-6 py-3 border" style={{ borderColor: C.white, color: C.white }}><Music2 size={16} /> TIKTOK</a>
+              </div>
+            </div>
+          </section>
+
+          <footer className="px-6 md:px-12 py-6 uc-mono text-[11px]" style={{ background: C.ink, color: C.gray, borderTop: `1px solid ${C.charcoal}` }}>
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-4">
               <span>© 2026 URBAN CAPS — MAISON DE CASQUETTES</span>
               <span>Site officiel</span>

@@ -15,7 +15,7 @@ const C = {
 
 const PRODUCT_DESCRIPTION = "Une casquette pensée comme une pièce de vestiaire : coupe précise, matière noble, finitions soignées. Un basique qui devient signature.";
 const FALLBACK_PRODUCTS = [
-  { id: 1, name: "LA CAP GRIS", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE", category: "NEW ERA", description: "Minimaliste et moderne, cette casquette New Era LA gris clair est idéale pour compléter un look casual ou streetwear. Son modèle fermé à l’arrière (Fitted) garantit un excellent confort et une finition haut de gamme." },
+  { id: 1, name: "LA CAP GRIS", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.ink, brim: C.white, badge: "ÉDITION LIMITÉE", category: "NEW ERA", description: "Minimaliste et moderne, cette casquette New Era LA gris clair est idéale pour compléter un look casual ou streetwear. Son modèle fermé à l’arrière (Fitted) garantit un excellent confort et une finition haut de gamme.", image: "/cap-1.jpg" },
   { id: 2, name: "NY CAP BLACK", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.charcoal, brim: C.ink, badge: null, category: "NEW ERA", description: "Affiche un style intemporel avec cette casquette New Era NY noire. Son logo brodé en blanc apporte une touche élégante, tandis que sa coupe fermée à l’arrière (Fitted) assure un maintien parfait et un confort optimal au quotidien." },
   { id: 3, name: "LA CAP FULL BLACK", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.white, brim: C.ink, badge: "BEST-SELLER", category: "NEW ERA", description: "Opte pour un style sobre et élégant avec cette casquette New Era LA Total Black. Son logo noir ton sur ton lui donne un look premium, tandis que sa conception fermée à l’arrière (Fitted) assure un ajustement parfait et un confort durable." },
   { id: 4, name: "LA CAP BLACK STARS", tag: "COTON TWILL", price: 170, size: "57,7cm", body: C.gray, brim: C.ink, badge: null, category: "NEW ERA", description: "Inspirée de l’univers du baseball, cette casquette New Era LA All-Star noire se distingue par sa broderie originale et ses finitions premium. Son design fermé à l’arrière (Fitted) offre un ajustement précis et un look authentique." },
@@ -290,8 +290,8 @@ export default function App() {
                     ) : p.badge && (
                       <div className="absolute top-3 right-3 uc-mono text-[9px] px-2 py-1" style={{ border: `1px solid ${C.gray}`, color: C.charcoal }}>{p.badge}</div>
                     )}
-                    <div className="w-full h-32 mb-4 flex items-center justify-center">
-                      <CapIcon body={p.body} brim={p.brim} />
+                    <div className="w-full h-32 mb-4 flex items-center justify-center overflow-hidden rounded-xl">
+                      {p.image ? <img src={p.image} alt={p.name} className="w-full h-full object-cover" /> : <CapIcon body={p.body} brim={p.brim} />}
                     </div>
                     <div className="uc-mono uc-taglabel text-[10px] mb-1" style={{ color: C.gray }}>{p.tag}</div>
                     <div className="flex items-center justify-between mb-4">
@@ -462,28 +462,12 @@ export default function App() {
               </div>
 
               <div className="max-w-4xl mx-auto px-6 md:px-12 py-10 md:py-16 grid md:grid-cols-2 gap-10 md:gap-16">
-                <div>
-                  <div className="flex items-center justify-center mb-3" style={{ background: C.off, minHeight: 320 }}>
-                    <div className="w-40 h-40 md:w-56 md:h-56">
-                      <CapIcon body={activeImage === 0 ? selectedProduct.body : selectedProduct.brim} brim={activeImage === 0 ? selectedProduct.brim : selectedProduct.body} />
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => setActiveImage(0)}
-                      className="w-16 h-16 flex items-center justify-center"
-                      style={{ background: C.off, border: `2px solid ${activeImage === 0 ? C.ink : "transparent"}` }}
-                    >
-                      <div className="w-10 h-10"><CapIcon body={selectedProduct.body} brim={selectedProduct.brim} /></div>
-                    </button>
-                    <button
-                      onClick={() => setActiveImage(1)}
-                      className="w-16 h-16 flex items-center justify-center"
-                      style={{ background: C.off, border: `2px solid ${activeImage === 1 ? C.ink : "transparent"}` }}
-                    >
-                      <div className="w-10 h-10"><CapIcon body={selectedProduct.brim} brim={selectedProduct.body} /></div>
-                    </button>
-                  </div>
+                <div className="flex items-center justify-center overflow-hidden rounded-xl" style={{ background: C.off, minHeight: 320 }}>
+                  {selectedProduct.image ? (
+                    <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-40 h-40 md:w-56 md:h-56"><CapIcon body={selectedProduct.body} brim={selectedProduct.brim} /></div>
+                  )}
                 </div>
 
                 <div>

@@ -459,8 +459,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  <p className="mb-8 max-w-md" style={{ color: C.charcoal }}>{PRODUCT_DESCRIPTION}</p>
-
+                  <p className="mb-8 max-w-md" style={{ color: C.charcoal }}>{selectedProduct.description || PRODUCT_DESCRIPTION}</p>
                   <div className="uc-mono text-[10px] mb-2" style={{ color: C.gray }}>QUANTITÉ</div>
                   <div className="flex items-center gap-3 mb-8">
                     <button onClick={() => setDetailQty((q) => Math.max(1, q - 1))} className="w-9 h-9 flex items-center justify-center" style={{ border: `1px solid ${C.grayLine}` }}>
